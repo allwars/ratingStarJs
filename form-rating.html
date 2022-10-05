@@ -59,9 +59,11 @@
       </form>
     </div>
     <script>
+      var ip_addr = window.location.hostname;
       const scriptURL =
         "https://script.google.com/macros/s/AKfycbxj-zGBligkehc9Srm-LcZovBDiUpVZ17LxK8ZMnal5YPewnczKC3ipDVihRPyusDwljg/exec";
       const form = document.forms["submit-form"];
+      const congrat = "<h3>¡Gracias por darnos tu opinión!</h3>"
 
       var destiny = window.location.href;
       //const congrat = "<h3>¡Gracias por darnos tu opinión!</h3>";
@@ -86,36 +88,32 @@
         '<input type="text" name="date" value="' + formatDate(date) + '">';
       const urlWeb = '<input type="url" name="url" value="' + destiny + '">';
 
-      ///////////////////fin variables
+      ///////////////////fin variables/////////////////////////
 
       if (document.querySelector('input[name="rating"]')) {
         document.querySelectorAll('input[name="rating"]').forEach((elem) => {
           elem.addEventListener("change", (e) => {
+           
             document.getElementById("date1").innerHTML = date2;
             document.getElementById("urlWeb1").innerHTML = urlWeb;
             //var item = event.target.value + " / " + destiny;
             console.log("work it");
             console.log(formatDate(date));
+            console.log(ip_addr);
             e.preventDefault();
             fetch(scriptURL, {
               method: "POST",
               body: new FormData(form),
             })
               .then((response) => console.log("Success!", response))
-              .catch((error) => console.error("Error!", error.message));
+              .catch((error) => console.error("Error!", error.message))
+              .then((html) => {
+                document.getElementById("sheetdb-form").innerHTML = congrat;
+              });
           });
         });
       }
 
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        fetch(scriptURL, {
-          method: "POST",
-          body: new FormData(form),
-        })
-          .then((response) => console.log("Success!", response))
-          .catch((error) => console.error("Error!", error.message));
-      });
     </script>
   </body>
 </html>

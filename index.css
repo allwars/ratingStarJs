@@ -1,71 +1,115 @@
-* {box-sizing: border-box}
+body {
+  background-color: #f7f6f6;
+}
 
-/* Full-width input fields */
-  input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
+.card {
+  width: 350px;
   border: none;
-  background: #f1f1f1;
+  box-shadow: 5px 6px 6px 2px #e9ecef;
+  border-radius: 12px;
 }
 
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-/* Set a style for all buttons */
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
+.circle-image img {
+  border: 6px solid #fff;
+  border-radius: 100%;
+  padding: 0px;
+  top: -28px;
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  z-index: 1;
+  background: #e7d184;
   cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
 }
 
-button:hover {
-  opacity:1;
+.dot {
+  height: 18px;
+  width: 18px;
+  background-color: blue;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid #fff;
+  top: -48px;
+  left: 186px;
+  z-index: 1000;
 }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
+.name {
+  margin-top: -21px;
+  font-size: 18px;
 }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
+.fw-500 {
+  font-weight: 500 !important;
 }
 
-/* Add padding to container elements */
-.container {
-  padding: 16px;
+.start {
+  color: green;
 }
 
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
+.stop {
+  color: red;
 }
 
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-    width: 100%;
-  }
+.rate {
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label {
+  position: relative;
+  width: 1em;
+  font-size: 50px;
+  font-weight: 300;
+  color: #a50034;
+  cursor: pointer;
+}
+
+.rating > label::before {
+  content: "\2605";
+  position: absolute;
+  opacity: 0;
+}
+
+.rating > label:hover:before, .rating > label:hover ~ label:before {
+  opacity: 1 !important;
+}
+
+.rating > input:checked ~ label:before {
+  opacity: 1;
+}
+
+.rating:hover > input:checked ~ label:before {
+  opacity: 0.4;
+}
+
+.buttons {
+  top: 36px;
+  position: relative;
+}
+
+.rating-submit {
+  border-radius: 15px;
+  color: #fff;
+  height: 49px;
+}
+
+.rating-submit:hover {
+  color: #fff;
+}
+
 /*//////////////////////////rating////////////////////*/
 
 body {
@@ -180,7 +224,7 @@ body {
   color: #fff;
 }
 
-.rating form input#rating {
+.rating form input.form-label {
     /* display: flex; */
     position: relative;
     left: 49px;
@@ -196,3 +240,6 @@ body {
   display: flex;
   flex-direction: row-reverse;
 }
+
+
+
