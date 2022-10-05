@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="rating">
+      <form name="submit-form" id="sheetdb-form">
+        <!--<input name="rating" type="text" placeholder="Nombres" required />
+        <input name="apellidos" type="text" placeholder="Apellidos" required />
+        <input name="email" type="email" placeholder="Email" required />
+        <button type="submit">Enviar</button>-->
+        <label class="form-label" for="5"><b>☆</b></label>
+        <input
+          class="form-label"
+          type="radio"
+          name="rating"
+          required
+          value="5"
+        />
+        <label class="form-label" for="4"><b>☆</b></label>
+        <input
+          class="form-label"
+          type="radio"
+          name="rating"
+          required
+          value="4"
+        />
+        <label class="form-label" for="3"><b>☆</b></label>
+        <input
+          class="form-label"
+          type="radio"
+          name="rating"
+          required
+          value="3"
+        />
+        <label class="form-label" for="2"><b>☆</b></label>
+        <input
+          class="form-label"
+          type="radio"
+          name="rating"
+          required
+          value="2"
+        />
+        <label class="form-label" for="1"><b>☆</b></label>
+        <input
+          class="form-label"
+          type="radio"
+          name="rating"
+          required
+          value="1"
+        />
+        <div style="display: none" id="urlWeb1"></div>
+        <div style="display: none" id="date1"></div>
+      </form>
+    </div>
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbxj-zGBligkehc9Srm-LcZovBDiUpVZ17LxK8ZMnal5YPewnczKC3ipDVihRPyusDwljg/exec";
+      const form = document.forms["submit-form"];
+
+      var destiny = window.location.href;
+      //const congrat = "<h3>¡Gracias por darnos tu opinión!</h3>";
+      var date = new Date();
+
+      const formatDate = (date) => {
+        let formatted_date =
+          date.getDate() +
+          "-" +
+          (date.getMonth() + 1) +
+          "-" +
+          date.getFullYear() +
+          " " +
+          date.getHours() +
+          ":" +
+          date.getMinutes() +
+          ":" +
+          date.getSeconds();
+        return formatted_date;
+      };
+      const date2 =
+        '<input type="text" name="date" value="' + formatDate(date) + '">';
+      const urlWeb = '<input type="url" name="url" value="' + destiny + '">';
+
+      ///////////////////fin variables
+
+      if (document.querySelector('input[name="rating"]')) {
+        document.querySelectorAll('input[name="rating"]').forEach((elem) => {
+          elem.addEventListener("change", (e) => {
+            document.getElementById("date1").innerHTML = date2;
+            document.getElementById("urlWeb1").innerHTML = urlWeb;
+            //var item = event.target.value + " / " + destiny;
+            console.log("work it");
+            console.log(formatDate(date));
+            e.preventDefault();
+            fetch(scriptURL, {
+              method: "POST",
+              body: new FormData(form),
+            })
+              .then((response) => console.log("Success!", response))
+              .catch((error) => console.error("Error!", error.message));
+          });
+        });
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, {
+          method: "POST",
+          body: new FormData(form),
+        })
+          .then((response) => console.log("Success!", response))
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+  </body>
+</html>

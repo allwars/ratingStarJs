@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="submit-form">
+      <input name="nombre" type="text" placeholder="Nombres" required />
+      <input name="apellidos" type="text" placeholder="Apellidos" required />
+      <input name="email" type="email" placeholder="Email" required />
+      <button type="submit">Enviar</button>
+    </form>
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbzk7jkOu3q45kxFKTV9_GOqt5JU09c-gGDa2W3nzIATCMhgtgG41-1HX9mmdE4Ijq25/exec";
+      const form = document.forms["submit-form"];
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, {
+            method: "POST", body: new FormData(form) })
+          .then((response) => console.log("Success!", response))
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+  </body>
+</html>
